@@ -1,4 +1,4 @@
-class Users::Create < ActiveInteraction::Base
+class Users::Create
   hash :params
 
   def execute
