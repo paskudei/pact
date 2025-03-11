@@ -185,7 +185,7 @@ RSpec.describe UsersController, type: :request do
             'user' => {
               'email' => 'paskudeidb@gmail.com',
               'age' => 0,
-              'gender' => 'invalid',
+              'gender' => 'male',
               'surname' => nil,
               'name' => 'Денис',
               'patronymic' => 'Владимирович',

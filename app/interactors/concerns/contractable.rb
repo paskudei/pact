@@ -5,7 +5,7 @@ module Contractable
 
   included do
     def contract_params
-      self.class.name.gsub('Interactor', 'Contract').constantize.call(params)
+      @contract_params ||= self.class.name.gsub('Interactor', 'Contract').constantize.call(params)
     end
   end
 end
