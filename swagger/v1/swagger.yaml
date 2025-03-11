@@ -17,6 +17,18 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/user"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/bad_request"
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unprocessable_entity"
       requestBody:
         content:
           application/json:

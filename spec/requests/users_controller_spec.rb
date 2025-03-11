@@ -2,7 +2,7 @@
 
 require 'swagger_helper'
 
-RSpec.describe UsersController, type: :request do # rubocop:disable RSpec/EmptyExampleGroup
+RSpec.describe UsersController, type: :request do
   path '/users' do
     post 'Создание пользователя' do
       tags User

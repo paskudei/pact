@@ -24,3 +24,12 @@ Metrics/BlockLength:
 
 Lint/MissingSuper:
   Enabled: false
+
+RSpec/Rails/InferredSpecType:
+  Enabled: false
+
+RSpecRails/InferredSpecType:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
