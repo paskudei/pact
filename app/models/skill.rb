@@ -1,7 +1,6 @@
-class Skill < ApplicationRecord
-  # Я понимаю, что вы имели ввиду использование связи HABTM, но ТЗ не явное, поэтому на мой выбор :)
-  # has_many :skill_users, dependent: :destroy
-  # has_many :users, through: :skill_users
+# frozen_string_literal: true
 
-  belongs_to :user
+class Skill < ApplicationRecord
+  has_many :user_skills, dependent: :destroy
+  has_many :users, through: :user_skills
 end

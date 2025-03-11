@@ -1,8 +1,26 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+require:
+  - rubocop-factory_bot
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-rspec_rails
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+AllCops:
+  Exclude:
+    - bin/*
+    - db/schema.rb
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 50
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 100
+
+Lint/MissingSuper:
+  Enabled: false

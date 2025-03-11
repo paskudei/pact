@@ -1,0 +1,246 @@
+---
+openapi: 3.0.1
+info:
+  title: SiteSync API V1
+  version: v1
+paths:
+  "/users":
+    post:
+      summary: Создание пользователя
+      tags:
+      - User
+      parameters: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/user"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: paskudeidb@gmail.com
+                      description: Почта
+                    age:
+                      type: integer
+                      example: 29
+                      description: Возраст
+                    nationality:
+                      type: string
+                      example: Русский
+                      description: Национальность
+                    country:
+                      type: string
+                      example: Россия
+                      description: Страна
+                    gender:
+                      type: string
+                      enum:
+                      - male
+                      - female
+                      description: Пол
+                    surname:
+                      type: string
+                      example: Блохин
+                      description: Фамилия
+                    name:
+                      type: string
+                      example: Денис
+                      description: Имя
+                    patronymic:
+                      type: string
+                      example: Владимирович
+                      description: Отчество
+                    full_name:
+                      type: string
+                      example: Блохин Денис Владимирович
+                      description: ФИО
+                  required:
+                  - id
+                  - email
+                  - age
+                  - nationality
+                  - country
+                  - gender
+                  - surname
+                  - name
+                  - patronymic
+                  - full_name
+                interests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Specs
+                        description: Название
+                    required:
+                    - name
+                skills:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Ruby
+                        description: Название
+                    required:
+                    - name
+              required:
+              - user
+              - interests
+              - skills
+components:
+  schemas:
+    bad_request:
+      type: array
+      items:
+        type: object
+        properties:
+          attribute:
+            type: string
+            description: Атрибут
+          type:
+            type: string
+            description: Тип ошибки
+          message:
+            type: string
+            description: Текст ошибки
+      required:
+      - attribute
+      - type
+      - message
+    unprocessable_entity:
+      type: array
+      items:
+        type: object
+        properties:
+          attribute:
+            type: string
+            description: Атрибут
+          type:
+            type: string
+            description: Тип ошибки
+          message:
+            type: string
+            description: Текст ошибки
+      required:
+      - attribute
+      - type
+      - message
+    user:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+              description: User ID
+            email:
+              type: string
+              example: paskudeidb@gmail.com
+              description: Почта
+            age:
+              type: integer
+              example: 29
+              description: Возраст
+            nationality:
+              type: string
+              example: Русский
+              description: Национальность
+            country:
+              type: string
+              example: Россия
+              description: Страна
+            gender:
+              type: string
+              enum:
+              - male
+              - female
+              description: Пол
+            surname:
+              type: string
+              example: Блохин
+              description: Фамилия
+              nullable: true
+            name:
+              type: string
+              example: Денис
+              description: Имя
+            patronymic:
+              type: string
+              example: Владимирович
+              description: Отчество
+            full_name:
+              type: string
+              example: Блохин Денис Владимирович
+              description: ФИО
+            interests:
+              type: array
+              items:
+                "$ref": "#/components/schemas/interest"
+            skills:
+              type: array
+              items:
+                "$ref": "#/components/schemas/skill"
+          required:
+          - id
+          - email
+          - age
+          - nationality
+          - country
+          - gender
+          - surname
+          - name
+          - patronymic
+          - full_name
+          - interests
+          - skills
+      required:
+      - user
+    interest:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Interest ID
+        name:
+          type: string
+          example: Specs
+          description: Название
+      required:
+      - id
+      - name
+    skill:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Skill ID
+        name:
+          type: string
+          example: Ruby
+          description: Название
+      required:
+      - id
+      - name
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

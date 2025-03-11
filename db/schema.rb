@@ -10,24 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_11_174617) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_11_195744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "interests", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_interests_on_user_id"
   end
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_skills_on_user_id"
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "interest_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
+    t.index ["user_id"], name: "index_user_interests_on_user_id"
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "skill_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_user_skills_on_skill_id"
+    t.index ["user_id"], name: "index_user_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,6 +58,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_174617) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "interests", "users"
-  add_foreign_key "skills", "users"
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
+  add_foreign_key "user_skills", "skills"
+  add_foreign_key "user_skills", "users"
 end

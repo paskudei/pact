@@ -1,0 +1,15 @@
+---
+en:
+  dry_validation:
+    errors:
+      messages:
+        validation_invalid: "Validation invalid: %{errors}"
+
+      str?: Value must be a string
+      int?: Value must be an integer
+      bool?: Value must be a boolean
+      date?: Value must be a date
+      hash?: Value must be a hash
+      array?: Value must be an array
+      filled?: Value must not be empty
+      key?: Attribute key is required

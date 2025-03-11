@@ -1,7 +1,6 @@
-class Interest < ApplicationRecord
-  # Я понимаю, что вы имели ввиду использование связи HABTM, но ТЗ не явное, поэтому на мой выбор :)
-  # has_many :interest_users, dependent: :destroy
-  # has_many :users, through: :interest_users
+# frozen_string_literal: true
 
-  belongs_to :user
+class Interest < ApplicationRecord
+  has_many :user_interests, dependent: :destroy
+  has_many :users, through: :user_interests
 end
