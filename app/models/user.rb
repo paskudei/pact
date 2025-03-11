@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-  has_many :interests
-  has_many :skills
+  has_many :interests, dependent: :destroy
+  has_many :skills, dependent: :destroy
 end
